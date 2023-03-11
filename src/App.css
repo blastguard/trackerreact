@@ -32,7 +32,24 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+#addBtn {
+  height: 40px;
+  width: 100px;
+  border-radius: 5px;
+  background: black;
+  color: white;
+  border-color: black;
+  box-shadow: none;
+  margin: 0px;
+}
+
+#userbox {
+  border-radius: 6px;
+  height: 25px;
 }

@@ -1,8 +1,8 @@
 import React from 'react';
-import StartFirebase from '../src/components/firebaseConfig';
+import StartFirebase from '../firebaseConfig';
 import { ref, set, get, update, remove, child } from 'firebase/database'
-import "../src/App.css"
-export default class App extends React.Component {
+
+export class Crud extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,37 +15,24 @@ export default class App extends React.Component {
     }
 
     componentDidMount() {
-      let x,y;
-      let self = this;
-      if (navigator.geolocation) {
-        navigator.geolocation.watchPosition(function(position) {
-          x = position.coords.latitude;
-          y = position.coords.longitude;
-          
-        self.setState({latitude:x});
-        self.setState({longitude:y});
-          console.log("Latitude is :", position.coords.latitude);
-          console.log("Longitude is :", position.coords.longitude);
-        });
-      }
-
         this.setState({
             db: StartFirebase()
         });
-
     }
 
     render() {
         return (
-            <div class="App">
-              <div class="App-header">
-                <input type="text" id="userbox" placeholder='Enter User Name' value={this.state.username} onChange={e => this.setState({ username: e.target.value })}></input>
-                <p>{this.state.latitude || 'Loading latitude..'}</p>
-                <p>{this.state.longitude || 'Loading longitude..'}</p>
+            <>
+                <label>Enter Username</label>
+                <input type="text" id="userbox" value={this.state.username} onChange={e => this.setState({ username: e.target.value })}></input>
 
+                <label>Enter Latitude</label>
+                <input type="text" id="latitudebox" value={this.state.latitude} onChange={e => this.setState({ latitude: e.target.value })}></input>
+
+                <label>Enter Longitude</label>
+                <input type="text" id="longitudebox" value={this.state.longitude} onChange={e => this.setState({ longitude: e.target.value })}></input>
                 <button id="addBtn" onClick={this.interface}>Send Data</button>
-                </div>
-            </div>
+            </>
         )
     }
     
@@ -62,9 +49,6 @@ export default class App extends React.Component {
         }
     }
     addData(){
-      if(this.state.username==""){
-        alert('Enter username')
-      }else{
         const db= this.state.db;
         const data = this.getInputs();
 
@@ -74,7 +58,6 @@ export default class App extends React.Component {
             Longitude: data.longitude
         }).then(()=>{alert('Success')})
         .catch((err)=>{alert("Error"+err)})
-      }
     }
 
 }
