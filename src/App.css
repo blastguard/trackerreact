@@ -53,3 +53,14 @@
   border-radius: 6px;
   height: 25px;
 }
+
+.round-button {
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: 2px solid white;
+  cursor: pointer;
+  margin: 20px;
+}
