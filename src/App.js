@@ -62,7 +62,6 @@ export default class App extends React.Component {
   readyblast(event) {
     const db = this.state.db;
     const data = this.getInputs();
-    debugger;
     if (this.state.username == "") {
       alert('Enter username')
     }
